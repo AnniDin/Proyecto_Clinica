@@ -48,7 +48,7 @@ public class SettingsManager : MonoBehaviour
         ApplySettings();
     }
 
-    /*
+    
     #if UNITY_EDITOR //Esto sirve para crearlo en caso de que haciendo pruebas no se lance la aplicación desde el bootstrap, sino desde una escena del juego. No hace falta que el script esté asociado a ningun gameobject de la escena.
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void AutoInitialize()
@@ -59,7 +59,7 @@ public class SettingsManager : MonoBehaviour
             obj.AddComponent<SettingsManager>();
         }
     #endif
-    */
+    
 
     private SettingsData LoadSettings()  //Si existe un JSON lo lee y devuelve sus valores, de lo contrario crea uno y devuelve valores default
     {
