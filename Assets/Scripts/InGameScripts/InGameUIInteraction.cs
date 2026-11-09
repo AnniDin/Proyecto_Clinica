@@ -36,6 +36,7 @@ public class InGameUIInteraction : MonoBehaviour
     [SerializeField] private Button btnEmotions;
     [SerializeField] private GameObject emotionMenuPanel;
     [SerializeField] private List<Button> emotions;
+    [SerializeField] private EmotionReactionManager reactionManager;
 
     [Header("Scene time")]
 
@@ -107,8 +108,8 @@ public class InGameUIInteraction : MonoBehaviour
 
         foreach (Button emotionButton in emotions)
         {
-            EmotionType currentEmotion = emotionButton.GetComponent<EmotionButtonUI>().GetEmotion();
-            emotionButton.onClick.AddListener(() => OnEmotionButton(currentEmotion));
+            Button currentButton = emotionButton;
+            emotionButton.onClick.AddListener(() => OnEmotionButton(currentButton));
         }
         btnEmotions.onClick.AddListener(OnEmotionsMenuButton);
         exitToMainButton.onClick.AddListener(OnExitToMainButton);
@@ -164,8 +165,15 @@ public class InGameUIInteraction : MonoBehaviour
         });
     }
 
-    private void OnEmotionButton(EmotionType currentEmotion)
+    private void OnEmotionButton(Button currentButton)
     {
+        EmotionType currentEmotion = currentButton.GetComponent<EmotionButtonUI>().GetEmotion();
+
+
+        reactionManager.ShowReactions(currentButton.image.sprite);
+        emotionMenuPanel.SetActive(false);
+
+
         print("guardando " + "El usuario se siente " + currentEmotion.ToString());
         MetricsManager.Instance.RegisterEvent("El usuario se siente " + currentEmotion.ToString());
 
