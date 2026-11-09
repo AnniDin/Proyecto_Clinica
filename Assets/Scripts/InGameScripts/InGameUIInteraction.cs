@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -32,10 +33,9 @@ public class InGameUIInteraction : MonoBehaviour
     [Header("SAAC")]
 
     [Space(10)]
-
-    [SerializeField] private Button sadButton;
-    [SerializeField] private Button normalButton;
-    [SerializeField] private Button happyButton;
+    [SerializeField] private Button btnEmotions;
+    [SerializeField] private GameObject emotionMenuPanel;
+    [SerializeField] private List<Button> emotions;
 
     [Header("Scene time")]
 
@@ -104,9 +104,13 @@ public class InGameUIInteraction : MonoBehaviour
     {
         returnButton.onClick.AddListener(OnReturnButton);
         nextButton.onClick.AddListener(OnNextButton);
-        sadButton.onClick.AddListener(OnSadButton);
-        normalButton.onClick.AddListener(OnNormalButton);
-        happyButton.onClick.AddListener(OnHappyButton);
+
+        foreach (Button emotionButton in emotions)
+        {
+            EmotionType currentEmotion = emotionButton.GetComponent<EmotionButtonUI>().GetEmotion();
+            emotionButton.onClick.AddListener(() => OnEmotionButton(currentEmotion));
+        }
+        btnEmotions.onClick.AddListener(OnEmotionsMenuButton);
         exitToMainButton.onClick.AddListener(OnExitToMainButton);
         cameraInputButton.onClick.AddListener(OnCameraInputButton);
     }
@@ -160,21 +164,16 @@ public class InGameUIInteraction : MonoBehaviour
         });
     }
 
-    private void OnSadButton()
+    private void OnEmotionButton(EmotionType currentEmotion)
     {
-        MetricsManager.Instance.RegisterEvent("El jugador se siente mal");
-    }
+        print("guardando " + "El usuario se siente " + currentEmotion.ToString());
+        MetricsManager.Instance.RegisterEvent("El usuario se siente " + currentEmotion.ToString());
 
-    private void OnNormalButton()
+    }
+    private void OnEmotionsMenuButton()
     {
-        MetricsManager.Instance.RegisterEvent("El jugador se siente tranquilo");
+        emotionMenuPanel.SetActive(!emotionMenuPanel.activeSelf);
     }
-
-    private void OnHappyButton()
-    {
-        MetricsManager.Instance.RegisterEvent("El jugador se siente alegre");
-    }
-
     private void OnExitToMainButton()
     {
         AudioManager.Instance.SetNormalAmbientVolume();
