@@ -92,7 +92,7 @@ public class SettingsManager : MonoBehaviour
     {
         Debug.Log($"Ambient volume set to {value}");
         CurrentSettings.ambientVolume = value;
-        AudioManager.Instance.SetAmbientVolume(value);
+        AudioManager.Instance?.SetAmbientVolume(value);
     }
 
     public void SetSfxVolume(float value)

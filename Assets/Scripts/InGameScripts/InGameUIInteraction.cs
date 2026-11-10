@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
@@ -43,6 +44,7 @@ public class InGameUIInteraction : MonoBehaviour
     [Space(10)]
 
     [SerializeField] private float sceneTime;
+    [SerializeField] private TextMeshProUGUI timerText;
 
     [Header("ExitToMainMenuButton")]
 
@@ -69,8 +71,6 @@ public class InGameUIInteraction : MonoBehaviour
 
         SubscribeListeners();
 
-        
-
         if (currentScene == "WaitingRoom")
         {
             sceneTime = SettingsManager.Instance.GetSceneDuration();
@@ -79,8 +79,8 @@ public class InGameUIInteraction : MonoBehaviour
         }
         else if (currentScene == "Consultation")
         {
-            AudioManager.Instance.SetClinicalAmbientVolume();
-            timerActive = false;
+            AudioManager.Instance?.SetClinicalAmbientVolume();
+            //timerActive = false;
         }
         else
         {
@@ -94,10 +94,19 @@ public class InGameUIInteraction : MonoBehaviour
         if (!timerActive) return;
 
         timer -= Time.deltaTime;
+        timer = Mathf.Max(0f, timer);
+
+        timerText.text = TimeSpan.FromSeconds(timer).ToString(@"mm\:ss");
 
         if (timer <= 0f)
         {
-            OnNextButton();
+            timer = 0f;
+            timerActive = false;
+
+            if (currentScene != "Consultation")
+            {
+                OnNextButton();
+            }
         }
     }
 
@@ -138,10 +147,6 @@ public class InGameUIInteraction : MonoBehaviour
         }
     }
 
-
-
-
-
     //A partir de aqui comienzan las interacciones de los botones de la funcion SuscribeListeners
 
     private void OnReturnButton()
@@ -155,7 +160,7 @@ public class InGameUIInteraction : MonoBehaviour
 
         if (nextScene == "MainMenu")
         {
-            AudioManager.Instance.SetNormalAmbientVolume();
+            AudioManager.Instance?.SetNormalAmbientVolume();
             MetricsManager.Instance.EndGameSession(completed: true);
         }
 
@@ -184,7 +189,7 @@ public class InGameUIInteraction : MonoBehaviour
     }
     private void OnExitToMainButton()
     {
-        AudioManager.Instance.SetNormalAmbientVolume();
+        AudioManager.Instance?.SetNormalAmbientVolume();
         MetricsManager.Instance.EndGameSession(completed: false, currentScene);
         SceneManager.LoadScene("MainMenu");
     }
@@ -196,5 +201,14 @@ public class InGameUIInteraction : MonoBehaviour
     private void UpdateCameraInputImage(int mode)
     {
         cameraInputImage.sprite = mode == 0 ? touchModeSprite : gyroModeSprite;
+    }
+
+    public void StartConsultationTimer(float duration)
+    {
+        timer = duration;
+        timerActive = true;
+        timerText.enabled = true;
+
+        timerText.text = TimeSpan.FromSeconds(timer).ToString(@"mm\:ss");
     }
 }
