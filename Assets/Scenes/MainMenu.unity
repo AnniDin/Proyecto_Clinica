@@ -3875,6 +3875,8 @@ MonoBehaviour:
   selectSceneButton: {fileID: 534857031}
   playButton: {fileID: 906592080}
   logOutButton: {fileID: 1623464567}
+  settingsPanels: []
+  settingsButtons: []
   settingsPanel: {fileID: 920037389}
   ambientVolumeSlider: {fileID: 33239310}
   sfxVolumeSlider: {fileID: 1232634663}
