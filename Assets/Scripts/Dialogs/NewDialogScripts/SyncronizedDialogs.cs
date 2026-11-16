@@ -37,7 +37,38 @@ public class SyncronizedDialogs : MonoBehaviour
 
     private void Start()
     {
+        float totalDuration = 0f;
+
+        foreach (ConsultaPhase phase in phases)
+        {
+            float audioDuration = phase.audio != null
+                ? phase.audio.length
+                : 0f;
+
+            float animationDuration = GetAnimationDuration(phase.animatorPhaseIndex);
+
+            totalDuration += Mathf.Max(audioDuration, animationDuration);
+        }
+
+        // Añadir los fundidos entre fases
+        totalDuration += Mathf.Max(0, phases.Length - 1) * 1f;
+
+        UIManager.StartConsultationTimer(totalDuration);
         StartCoroutine(RunPhase(currentPhase));
+    }
+
+    private float GetAnimationDuration(int phaseIndex)
+    {
+        string stateName = "Fase" + phaseIndex.ToString("00");
+
+        foreach (AnimationClip clip in doctorAnimator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == stateName)
+                return clip.length;
+        }
+
+        Debug.LogWarning("No se encontró la animación: " + stateName);
+        return 0f;
     }
 
     private IEnumerator RunPhase(int index)
@@ -63,7 +94,11 @@ public class SyncronizedDialogs : MonoBehaviour
         audioSource.clip = phase.audio;
         audioSource.Play();
 
-        yield return StartCoroutine(TypeSyncedToAudio(phase.text, animationDuration, phase.pauses));
+        yield return StartCoroutine(TypeSyncedToAudio(
+            phase.text,
+            phase.audio.length,
+            phase.pauses
+        ));
 
         // Espera a que la animación termine completamente
         yield return StartCoroutine(WaitForAnimationComplete());

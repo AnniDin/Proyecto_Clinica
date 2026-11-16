@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class UIInteraction : MonoBehaviour
 {
@@ -31,6 +33,11 @@ public class UIInteraction : MonoBehaviour
 
 
     [Header("SettingsPanel")]
+
+    [Space(10)]
+
+    [SerializeField] private List<GameObject> settingsPanels;
+    [SerializeField] private List<Button> settingsButtons;
 
     [Space(10)]
 
@@ -315,5 +322,17 @@ public class UIInteraction : MonoBehaviour
     private void OnToggleImageButton()
     {
         imageToToggle.SetActive(!imageToToggle.activeSelf);
+    }
+
+    public void ChangeSettingsPanel(int option)
+    {
+        if (option < 0 || option >= settingsPanels.Count)
+            return;
+
+        for (int i = 0; i < settingsPanels.Count; i++)
+        {
+            settingsPanels[i].SetActive(i == option);
+            settingsButtons[i].interactable = (i != option);
+        }
     }
 }
