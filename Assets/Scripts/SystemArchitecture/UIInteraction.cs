@@ -47,6 +47,7 @@ public class UIInteraction : MonoBehaviour
 
     [SerializeField] private Slider ambientVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
+    [SerializeField] private Slider breathingSlider;
 
     [Space(10)]
 
@@ -127,6 +128,7 @@ public class UIInteraction : MonoBehaviour
         sampleText.fontSize = s.dialogFontSize;
         brightnessSlider.value = s.brightness;
         UpdateSceneDurationButtons(s.sceneDuration);
+        breathingSlider.value = s.breathingCycles;
 
         //Al volver al menu principal, si hay un JSON de datos creados no aparecerá de nuevo el panel de log in
         if (MetricsManager.Instance.Current != null)
@@ -157,6 +159,7 @@ public class UIInteraction : MonoBehaviour
             else
                 agitationThresholdInput.text = SettingsManager.Instance.CurrentSettings.agitationThreshold.ToString();
         });
+        breathingSlider.onValueChanged.AddListener(SettingsManager.Instance.SetBreathingCycles);
 
         settingsBackButton.onClick.AddListener(OnSettingsBackButton);
         settingsButton.onClick.AddListener(OnSettingsButton);
@@ -334,5 +337,9 @@ public class UIInteraction : MonoBehaviour
             settingsPanels[i].SetActive(i == option);
             settingsButtons[i].interactable = (i != option);
         }
+    }
+
+    public void ActualiceBreathingSliderText(TextMeshProUGUI text) {
+        text.text = breathingSlider.value.ToString("F0");
     }
 }

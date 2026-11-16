@@ -38,6 +38,7 @@ public class InGameUIInteraction : MonoBehaviour
     [SerializeField] private GameObject emotionMenuPanel;
     [SerializeField] private List<Button> emotions;
     [SerializeField] private EmotionReactionManager reactionManager;
+    [SerializeField] private GameObject breathingCanvas;
 
     [Header("Scene time")]
 
@@ -178,9 +179,28 @@ public class InGameUIInteraction : MonoBehaviour
         reactionManager.ShowReactions(currentButton.image.sprite);
         emotionMenuPanel.SetActive(false);
 
-
         print("guardando " + "El usuario se siente " + currentEmotion.ToString());
-        MetricsManager.Instance.RegisterEvent("El usuario se siente " + currentEmotion.ToString());
+        if(MetricsManager.Instance != null)
+        {
+            MetricsManager.Instance.RegisterEvent("El usuario se siente " + currentEmotion.ToString());
+        }
+
+        if (currentEmotion == EmotionType.Nervioso ||
+    currentEmotion == EmotionType.Enfadado ||
+    currentEmotion == EmotionType.Miedo)
+        {
+            Debug.Log("Mostrando canvas de respiración");
+            breathingCanvas.SetActive(true);
+
+            CanvasGroup canvasGroup = breathingCanvas.GetComponent<CanvasGroup>();
+
+            if (canvasGroup != null)
+            {
+                canvasGroup.alpha = 1f;
+                canvasGroup.interactable = true;
+                canvasGroup.blocksRaycasts = true;
+            }
+        }
 
     }
     private void OnEmotionsMenuButton()

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1998363231806685068}
   - component: {fileID: 2454759409634140861}
   - component: {fileID: 2004242869378808108}
+  - component: {fileID: 6588508623473506581}
   m_Layer: 5
   m_Name: Canvas - BreathingController
   m_TagString: Untagged
@@ -144,6 +145,9 @@ MonoBehaviour:
   holdDuration: 3
   exhaleDuration: 4
   restDuration: 2
+  completionAudio: {fileID: 8300000, guid: bde304a9b6c7ed843b6cf794e98c94aa, type: 3}
+  exerciseCanvasGroup: {fileID: 6588508623473506581}
+  fadeOutDuration: 2
   iconFadeDuration: 0.4
   coverageMargin: 0.9
 --- !u!82 &2004242869378808108
@@ -243,6 +247,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!225 &6588508623473506581
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727878984188213670}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2109044303385887227
 GameObject:
   m_ObjectHideFlags: 0
