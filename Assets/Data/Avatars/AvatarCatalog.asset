@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1105cd2bbd07c545a18558ee27fe487, type: 3}
+  m_Name: AvatarCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::AvatarCatalog
+  hairstyles:
+  - id: hair_01
+    backSprite: {fileID: 21300000, guid: 4039e6efafca9eb4891854e64b864b91, type: 3}
+    frontSprite: {fileID: 21300000, guid: ed2f633d0937b0f41b18506ac51862d9, type: 3}
+  - id: hair_07
+    backSprite: {fileID: 21300000, guid: c1bf2b07bdce95e46ad4bc92e7b6e290, type: 3}
+    frontSprite: {fileID: 21300000, guid: 7973f8d69fdff6d43bd96b902c1bcbc2, type: 3}
+  faces:
+  - id: face_01
+    sprite: {fileID: 21300000, guid: b3c52b8a36fb78844b2ee3aea925bedb, type: 3}
+  outfits:
+  - id: outfit_01
+    backSprite: {fileID: 21300000, guid: 7d4bd3ec9d2dd5c4e9ff051b15d48149, type: 3}
+    frontSprite: {fileID: 21300000, guid: 8a344a5daba7be240be99f344bbfd763, type: 3}
+  - id: outfit_7
+    backSprite: {fileID: 21300000, guid: 18704c5aa3c20214cb57ef9af800e214, type: 3}
+    frontSprite: {fileID: 21300000, guid: 7d71a061a3eb79546a3d64a935b79f77, type: 3}
