@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AvatarCatalog
   hairstyles:
   - id: hair_01
-    backSprite: {fileID: 21300000, guid: 4039e6efafca9eb4891854e64b864b91, type: 3}
+    backSprite: {fileID: 21300000, guid: c1bf2b07bdce95e46ad4bc92e7b6e290, type: 3}
     frontSprite: {fileID: 21300000, guid: ed2f633d0937b0f41b18506ac51862d9, type: 3}
   - id: hair_07
-    backSprite: {fileID: 21300000, guid: c1bf2b07bdce95e46ad4bc92e7b6e290, type: 3}
+    backSprite: {fileID: 21300000, guid: 4039e6efafca9eb4891854e64b864b91, type: 3}
     frontSprite: {fileID: 21300000, guid: 7973f8d69fdff6d43bd96b902c1bcbc2, type: 3}
   faces:
   - id: face_01
