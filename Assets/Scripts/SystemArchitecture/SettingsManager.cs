@@ -13,6 +13,8 @@ public class SettingsData
     public int sceneDuration = 0;
     public int controlMode = 0; // 0 = arrastrar dedo, 1 = giroscopio
     public float agitationThreshold = 10f;
+
+    public int breathingCycles = 3;
 }
 
 public class SettingsManager : MonoBehaviour
@@ -126,6 +128,11 @@ public class SettingsManager : MonoBehaviour
     public float GetSceneDuration()
     {
         return sceneDurations[CurrentSettings.sceneDuration];
+    }
+
+    public void SetBreathingCycles(float value)
+    {
+        CurrentSettings.breathingCycles = Mathf.RoundToInt(value);
     }
 
     //Botones del giroscopio

@@ -36,6 +36,14 @@ public class BreathingExercise : MonoBehaviour
     [SerializeField] private float exhaleDuration = 6f;
     [SerializeField] private float restDuration = 2f;
 
+    private int completedCycles = 0;
+    private int totalCycles;
+
+    [Header("Finalización")]
+    [SerializeField] private AudioClip completionAudio;
+    [SerializeField] private CanvasGroup exerciseCanvasGroup;
+    [SerializeField] private float fadeOutDuration = 2f;
+
     [Header("Transición de iconos")]
     [SerializeField] private float iconFadeDuration = 0.5f;
 
@@ -93,41 +101,28 @@ public class BreathingExercise : MonoBehaviour
             return;
         }
 
+        totalCycles = SettingsManager.Instance.CurrentSettings.breathingCycles;
+
         StartCoroutine(RunBreathingExercise());
     }
 
     private IEnumerator RunBreathingExercise()
     {
-        // 1. Reproducir explicación inicial.
         yield return PlayExplanation();
 
-        // 2. Repetir el ciclo de respiración.
-        while (true)
+        while (completedCycles < totalCycles)
         {
-            yield return RunPhase(
-                BreathingPhase.Inhale,
-                inhaleAudio,
-                inhaleDuration
-            );
+            yield return RunPhase(BreathingPhase.Inhale, inhaleAudio, inhaleDuration);
+            yield return RunPhase(BreathingPhase.Hold, holdAudio, holdDuration);
+            yield return RunPhase(BreathingPhase.Exhale, exhaleAudio, exhaleDuration);
+            yield return RunPhase(BreathingPhase.Rest, restAudio, restDuration);
 
-            yield return RunPhase(
-                BreathingPhase.Hold,
-                holdAudio,
-                holdDuration
-            );
+            completedCycles++;
 
-            yield return RunPhase(
-                BreathingPhase.Exhale,
-                exhaleAudio,
-                exhaleDuration
-            );
-
-            yield return RunPhase(
-                BreathingPhase.Rest,
-                restAudio,
-                restDuration
-            );
+            Debug.Log($"Ciclo completado: {completedCycles}/{totalCycles}");
         }
+
+        yield return OnBreathingExerciseCompleted();
     }
 
     private IEnumerator PlayExplanation()
@@ -328,5 +323,53 @@ public class BreathingExercise : MonoBehaviour
 
         appearance = value;
         UpdatePhaseIcon();
+    }
+
+    private IEnumerator OnBreathingExerciseCompleted()
+    {
+        // Reproducir audio de felicitación.
+        if (completionAudio != null)
+        {
+            audioSource.clip = completionAudio;
+            audioSource.Play();
+
+            // Esperar a que termine.
+            while (audioSource.isPlaying)
+            {
+                yield return null;
+            }
+        }
+
+        // Registrar finalización en métricas.
+        MetricsManager.Instance.RegisterEvent(
+            $"Ejercicio de respiración completado: {completedCycles} ciclos"
+        );
+
+        // Desvanecer progresivamente el Canvas.
+        float elapsed = 0f;
+        float initialAlpha = exerciseCanvasGroup.alpha;
+
+        exerciseCanvasGroup.interactable = false;
+        exerciseCanvasGroup.blocksRaycasts = false;
+
+        while (elapsed < fadeOutDuration)
+        {
+            elapsed += Time.deltaTime;
+
+            float progress = Mathf.Clamp01(elapsed / fadeOutDuration);
+
+            exerciseCanvasGroup.alpha = Mathf.Lerp(
+                initialAlpha,
+                0f,
+                progress
+            );
+
+            yield return null;
+        }
+
+        exerciseCanvasGroup.alpha = 0f;
+
+        // Desactivar el Canvas completo.
+        exerciseCanvasGroup.gameObject.SetActive(false);
     }
 }
