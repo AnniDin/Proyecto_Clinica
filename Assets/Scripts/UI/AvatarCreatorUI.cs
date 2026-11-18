@@ -7,21 +7,21 @@ public class AvatarCreatorUI : MonoBehaviour
     [SerializeField] private AvatarCatalog catalog;
 
     [Header("Avatar Images")]
-    [SerializeField] private Image faceImage;
+    [SerializeField] private Image headImage;
     [SerializeField] private Image hairBackImage;
     [SerializeField] private Image hairFrontImage;
     [SerializeField] private Image outfitBackImage;
     [SerializeField] private Image outfitFrontImage;
 
     [Header("Buttons")]
-    [SerializeField] private Button previousFaceButton;
-    [SerializeField] private Button nextFaceButton;
+    [SerializeField] private Button previousHeadButton;
+    [SerializeField] private Button nextHeadButton;
     [SerializeField] private Button previousHairButton;
     [SerializeField] private Button nextHairButton;
     [SerializeField] private Button previousOutfitButton;
     [SerializeField] private Button nextOutfitButton;
 
-    private int faceIndex = 0;
+    private int headIndex = 0;
     private int hairIndex = 0;
     private int outfitIndex = 0;
 
@@ -38,8 +38,8 @@ public class AvatarCreatorUI : MonoBehaviour
         previousHairButton.onClick.AddListener(() => ChangeHair(-1));
         nextHairButton.onClick.AddListener(() => ChangeHair(1));
 
-        previousFaceButton.onClick.AddListener(() => ChangeFace(-1));
-        nextFaceButton.onClick.AddListener(() => ChangeFace(1));
+        previousHeadButton.onClick.AddListener(() => ChangeFace(-1));
+        nextHeadButton.onClick.AddListener(() => ChangeFace(1));
 
         previousOutfitButton.onClick.AddListener(() => ChangeOutfit(-1));
         nextOutfitButton.onClick.AddListener(() => ChangeOutfit(1));
@@ -55,7 +55,7 @@ public class AvatarCreatorUI : MonoBehaviour
 
     private void ChangeFace (int direction)
     {
-        faceIndex = (faceIndex + direction + catalog.faces.Count) % catalog.faces.Count;
+        headIndex = (headIndex + direction + catalog.heads.Count) % catalog.heads.Count;
 
         UpdateAvatar();
 
@@ -70,7 +70,7 @@ public class AvatarCreatorUI : MonoBehaviour
 
     private void UpdateAvatar()
     {
-        faceImage.sprite = catalog.faces[faceIndex].sprite;
+        headImage.sprite = catalog.heads[headIndex].sprite;
 
         AvatarSpriteOption hair = catalog.hairstyles[hairIndex];
         SetSprite(hairBackImage, hair.backSprite);

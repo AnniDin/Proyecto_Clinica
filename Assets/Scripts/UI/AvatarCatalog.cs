@@ -5,6 +5,6 @@ using System.Collections.Generic;
 public class AvatarCatalog : ScriptableObject
 {
     public List<AvatarSpriteOption> hairstyles;
-    public List<AvatarFaceOption> faces;
+    public List<AvatarHeadOption> heads;
     public List<AvatarSpriteOption> outfits;
 }
