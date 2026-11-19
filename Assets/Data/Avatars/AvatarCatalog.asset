@@ -39,15 +39,15 @@ MonoBehaviour:
     frontSprite: {fileID: 21300000, guid: 61b3b5f6569727e43b65af00bc3f7640, type: 3}
   heads:
   - id: head_01
-    sprite: {fileID: 21300000, guid: 2ee53475ef780bf4e949eba8722a754d, type: 3}
-  - id: head_02
     sprite: {fileID: 21300000, guid: c3a5c6959db5a4b4cbc85d51525c4504, type: 3}
+  - id: heado_02
+    sprite: {fileID: 21300000, guid: eb8e9670bfb5ad545adfa244ed9bbdae, type: 3}
   - id: head_03
-    sprite: {fileID: 21300000, guid: ccc0d872604b4544cbdf548a5d25ae3e, type: 3}
+    sprite: {fileID: 21300000, guid: 4d4266dc332f6574bb1cf358ac141c15, type: 3}
   - id: head_04
-    sprite: {fileID: 21300000, guid: 2fac06627c71f4240ad36d8839bf57a9, type: 3}
+    sprite: {fileID: 21300000, guid: d57a04d9c7abe47478f23579ca7211ba, type: 3}
   - id: head_05
-    sprite: {fileID: 21300000, guid: 81cbf716629d3d843a73d54aaa4759b4, type: 3}
+    sprite: {fileID: 21300000, guid: ee67fbef1fa0a65488c87885349df4aa, type: 3}
   outfits:
   - id: outfit_01
     backSprite: {fileID: 21300000, guid: 7d4bd3ec9d2dd5c4e9ff051b15d48149, type: 3}
