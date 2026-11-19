@@ -1,23 +1,33 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
-[System.Serializable]
+[Serializable]
 public class PauseInterval
 {
     public float start;
     public float duration;
 }
 
-[System.Serializable]
+[Serializable]
+public class EmojiSubtitle
+{
+    [Min(0f)]
+    public float startTime;
+    public Sprite[] emojis;
+}
+
+
+[Serializable]
 public class ConsultaPhase
 {
-    public string text;
+    public EmojiSubtitle[] subtitles;
     public AudioClip audio;
     public int animatorPhaseIndex;
     public PauseInterval[] pauses;
 }
+
 
 public class SyncronizedDialogs : MonoBehaviour
 {
@@ -27,9 +37,9 @@ public class SyncronizedDialogs : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] private InGameUIInteraction UIManager;
     [SerializeField] private Animator doctorAnimator;
-    [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private ScrollRect scrollRect;
+    [SerializeField] private Transform emojiContainer;
+    [SerializeField] private Image emojiPrefab;
 
     private bool phaseChanged;
 
@@ -73,115 +83,146 @@ public class SyncronizedDialogs : MonoBehaviour
 
     private IEnumerator RunPhase(int index)
     {
-        if (index >= phases.Length) yield break;
+        if (index >= phases.Length)
+            yield break;
 
         ConsultaPhase phase = phases[index];
 
         phaseChanged = false;
 
-        // Activa la animación correspondiente
-        doctorAnimator.SetInteger("phaseIndex", phase.animatorPhaseIndex);
+        ClearEmojis();
 
-        // Espera un frame para que el Animator procese el cambio
+        doctorAnimator.SetInteger(
+            "phaseIndex",
+            phase.animatorPhaseIndex
+        );
+
         yield return null;
 
         BrightnessOverlay.Instance.FadeFromBlack(1f);
 
-        // Obtiene la duración real de la animación actual
-        float animationDuration = doctorAnimator.GetCurrentAnimatorStateInfo(0).length;
+        audioSource.Stop();
 
-        // Muestra el texto con máquina de escribir sincronizada al audio
-        audioSource.clip = phase.audio;
-        audioSource.Play();
+        if (phase.audio != null)
+        {
+            audioSource.clip = phase.audio;
+            audioSource.Play();
 
-        yield return StartCoroutine(TypeSyncedToAudio(
-            phase.text,
-            phase.audio.length,
-            phase.pauses
-        ));
+            yield return StartCoroutine(
+                ShowEmojisSyncedToAudio(phase.subtitles)
+            );
+        }
 
-        // Espera a que la animación termine completamente
-        yield return StartCoroutine(WaitForAnimationComplete());
+        yield return StartCoroutine(
+            WaitForAnimationComplete()
+        );
+
+        ClearEmojis();
 
         currentPhase++;
 
         if (currentPhase < phases.Length)
         {
-            BrightnessOverlay.Instance.FadeToBlack(1f, () => phaseChanged = true);
+            BrightnessOverlay.Instance.FadeToBlack(
+                1f,
+                () => phaseChanged = true
+            );
 
-            yield return new WaitUntil(() => phaseChanged);
+            yield return new WaitUntil(
+                () => phaseChanged
+            );
 
-            yield return StartCoroutine(RunPhase(currentPhase));
+            yield return StartCoroutine(
+                RunPhase(currentPhase)
+            );
         }
         else
         {
-            // Todas las fases terminadas, vuelve al menú
             UIManager.OnNextButton();
         }
     }
-    private float GetSpeakingElapsed(float rawTime, PauseInterval[] pauses)
+    private IEnumerator ShowEmojisSyncedToAudio(
+       EmojiSubtitle[] subtitles)
     {
-        if (pauses == null) return rawTime;
+        ClearEmojis();
 
-        float subtract = 0f;
-        foreach (PauseInterval p in pauses)
+        int currentSubtitle = -1;
+
+        while (audioSource.isPlaying)
         {
-            if (rawTime > p.start)
+            float audioTime = audioSource.time;
+
+            int targetSubtitle = -1;
+
+            if (subtitles != null)
             {
-                float overlapEnd = Mathf.Min(rawTime, p.start + p.duration);
-                subtract += overlapEnd - p.start;
-            }
-        }
-        return rawTime - subtract;
-    }
-
-    private IEnumerator TypeSyncedToAudio(string text, float audioDuration, PauseInterval[] pauses)
-    {
-        dialogueText.text = "";
-        Canvas.ForceUpdateCanvases();
-
-        if (audioDuration <= 0 || text.Length == 0) yield break;
-
-        float totalPauseDuration = 0f;
-        if (pauses != null)
-        {
-            foreach (PauseInterval p in pauses) totalPauseDuration += p.duration;
-        }
-        float totalSpeakingDuration = Mathf.Max(0.01f, audioDuration - totalPauseDuration);
-
-        int charsShown = 0;
-
-        while (charsShown < text.Length)
-        {
-            float rawTime = audioSource.isPlaying ? audioSource.time : audioDuration;
-            float speakingElapsed = GetSpeakingElapsed(rawTime, pauses);
-
-            int target = Mathf.Min(
-                Mathf.FloorToInt((speakingElapsed / totalSpeakingDuration) * text.Length),
-                text.Length
-            );
-
-            if (target > charsShown)
-            {
-                charsShown = target;
-                dialogueText.text = text.Substring(0, charsShown);
-                Canvas.ForceUpdateCanvases();
-                scrollRect.verticalNormalizedPosition = 0f;
+                for (int i = 0; i < subtitles.Length; i++)
+                {
+                    if (audioTime >= subtitles[i].startTime)
+                    {
+                        if (targetSubtitle == -1 ||
+                            subtitles[i].startTime >
+                            subtitles[targetSubtitle].startTime)
+                        {
+                            targetSubtitle = i;
+                        }
+                    }
+                }
             }
 
-            if (!audioSource.isPlaying && rawTime >= audioDuration)
+            if (targetSubtitle != currentSubtitle)
             {
-                charsShown = text.Length;
-                dialogueText.text = text;
-                break;
+                currentSubtitle = targetSubtitle;
+
+                if (currentSubtitle >= 0)
+                {
+                    DisplayEmojis(
+                        subtitles[currentSubtitle].emojis
+                    );
+                }
+                else
+                {
+                    ClearEmojis();
+                }
             }
 
             yield return null;
         }
-
-        dialogueText.text = text.Substring(0, charsShown);
     }
 
+    private void DisplayEmojis(Sprite[] emojis)
+    {
+        ClearEmojis();
+
+        if (emojis == null)
+            return;
+
+        foreach (Sprite emoji in emojis)
+        {
+            if (emoji == null)
+                continue;
+
+            Image newEmoji = Instantiate(
+                emojiPrefab,
+                emojiContainer
+            );
+
+            newEmoji.sprite = emoji;
+            newEmoji.preserveAspect = true;
+        }
+    }
+
+    private void ClearEmojis()
+    {
+        if (emojiContainer == null)
+            return;
+
+        foreach (Transform child in emojiContainer)
+        {
+            child.gameObject.SetActive(false);
+            Destroy(child.gameObject);
+        }
+    }
     private IEnumerator WaitForAnimationComplete()
     {
         yield return null;
