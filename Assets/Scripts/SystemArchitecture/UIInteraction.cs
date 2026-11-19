@@ -286,7 +286,7 @@ public class UIInteraction : MonoBehaviour
 
         if (string.IsNullOrEmpty(pseudonym))
         {
-            errorText.text = "INTRODUCE UN PSEUDONIMO PARA CONTINUAR.";
+            errorText.text = "Introduce un nombre para continuar";
             errorText.gameObject.SetActive(true);
             return;
         }
