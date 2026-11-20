@@ -2357,8 +2357,8 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 252e0832bba5cee4288e6156597b7d55, type: 3}
     - startTime: 4
       emojis:
+      - {fileID: 21300000, guid: 926936d146f9a09439f70c7dbe873144, type: 3}
       - {fileID: 21300000, guid: 9dcbe87ad8ba9934f9dc1cc8e2a8dedc, type: 3}
-      - {fileID: 21300000, guid: 80283637d68ecbf458a996fa9772ccce, type: 3}
     - startTime: 6
       emojis:
       - {fileID: 21300000, guid: 6a6fba1bfca56ba4d87365336ea61b9d, type: 3}
@@ -2370,7 +2370,7 @@ MonoBehaviour:
   - subtitles:
     - startTime: 1
       emojis:
-      - {fileID: 21300000, guid: 1447e007957ccde4cb3936a6d991ec7c, type: 3}
+      - {fileID: 21300000, guid: 4abc604fbec06c6469f2ee80a5b41058, type: 3}
       - {fileID: 21300000, guid: 10564212c73063348901b98bd4ded79b, type: 3}
       - {fileID: 21300000, guid: b8d200989336c82489b950ae47e491f9, type: 3}
       - {fileID: 21300000, guid: 2b5b628cb2d8cd64fbc1109be98ebe5e, type: 3}
@@ -2401,6 +2401,43 @@ MonoBehaviour:
       - {fileID: 21300000, guid: de75d2b061721884699b2c3051b7ce3b, type: 3}
       - {fileID: 21300000, guid: de75d2b061721884699b2c3051b7ce3b, type: 3}
       - {fileID: 21300000, guid: de75d2b061721884699b2c3051b7ce3b, type: 3}
+    - startTime: 14
+      emojis:
+      - {fileID: 21300000, guid: 74fd2d16dac5c2a4fbbbe07ee3a3ab2a, type: 3}
+    - startTime: 15
+      emojis:
+      - {fileID: 21300000, guid: 74fd2d16dac5c2a4fbbbe07ee3a3ab2a, type: 3}
+      - {fileID: 21300000, guid: 74fd2d16dac5c2a4fbbbe07ee3a3ab2a, type: 3}
+    - startTime: 17
+      emojis:
+      - {fileID: 21300000, guid: 74fd2d16dac5c2a4fbbbe07ee3a3ab2a, type: 3}
+      - {fileID: 21300000, guid: 74fd2d16dac5c2a4fbbbe07ee3a3ab2a, type: 3}
+      - {fileID: 21300000, guid: 74fd2d16dac5c2a4fbbbe07ee3a3ab2a, type: 3}
+    - startTime: 18
+      emojis:
+      - {fileID: 21300000, guid: de75d2b061721884699b2c3051b7ce3b, type: 3}
+    - startTime: 19
+      emojis:
+      - {fileID: 21300000, guid: de75d2b061721884699b2c3051b7ce3b, type: 3}
+      - {fileID: 21300000, guid: de75d2b061721884699b2c3051b7ce3b, type: 3}
+    - startTime: 21
+      emojis:
+      - {fileID: 21300000, guid: de75d2b061721884699b2c3051b7ce3b, type: 3}
+      - {fileID: 21300000, guid: de75d2b061721884699b2c3051b7ce3b, type: 3}
+      - {fileID: 21300000, guid: de75d2b061721884699b2c3051b7ce3b, type: 3}
+    - startTime: 22
+      emojis:
+      - {fileID: 21300000, guid: 80283637d68ecbf458a996fa9772ccce, type: 3}
+    - startTime: 24
+      emojis:
+      - {fileID: 21300000, guid: 1f1ab878ea4f322489461feeffa918e5, type: 3}
+      - {fileID: 21300000, guid: 10564212c73063348901b98bd4ded79b, type: 3}
+      - {fileID: 21300000, guid: b8d200989336c82489b950ae47e491f9, type: 3}
+      - {fileID: 21300000, guid: 2b5b628cb2d8cd64fbc1109be98ebe5e, type: 3}
+    - startTime: 25
+      emojis:
+      - {fileID: 21300000, guid: 7e2ee2bdc58c17e42ba63885c1156002, type: 3}
+      - {fileID: 21300000, guid: e96989d3c575fc14eaaf2bdd402ca7c5, type: 3}
     audio: {fileID: 8300000, guid: f53f403db73da4d4a8c4b029d78f566b, type: 3}
     animatorPhaseIndex: 1
     pauses:
@@ -2408,19 +2445,74 @@ MonoBehaviour:
       duration: 6
     - start: 15.9
       duration: 7
-  - subtitles: []
+  - subtitles:
+    - startTime: 1
+      emojis:
+      - {fileID: 21300000, guid: 926936d146f9a09439f70c7dbe873144, type: 3}
+      - {fileID: 21300000, guid: 1447e007957ccde4cb3936a6d991ec7c, type: 3}
+    - startTime: 2
+      emojis:
+      - {fileID: 21300000, guid: c3a48881e5cdd114c85613de4c9cb916, type: 3}
+    - startTime: 4
+      emojis:
+      - {fileID: 21300000, guid: 3237792885c65244fad2b39572ec7dd6, type: 3}
+      - {fileID: 21300000, guid: 8fdfe59a2767d8b43a3e4c33d1f024d1, type: 3}
+    - startTime: 10
+      emojis:
+      - {fileID: 21300000, guid: 80283637d68ecbf458a996fa9772ccce, type: 3}
+    - startTime: 13
+      emojis:
+      - {fileID: 21300000, guid: 9ae2dcdb6ed062d41b7e5107e457c4e4, type: 3}
+      - {fileID: 21300000, guid: f33f296461def624aace848ba1d85e6c, type: 3}
+      - {fileID: 21300000, guid: e96989d3c575fc14eaaf2bdd402ca7c5, type: 3}
     audio: {fileID: 8300000, guid: 5365d8a6a60425d40a25c9687f9cefe5, type: 3}
     animatorPhaseIndex: 2
     pauses:
     - start: 7.5
       duration: 3
-  - subtitles: []
+  - subtitles:
+    - startTime: 1
+      emojis:
+      - {fileID: 21300000, guid: 3d83e60fb8cfa9a4398aa475789beeac, type: 3}
+    - startTime: 2
+      emojis:
+      - {fileID: 21300000, guid: 3d83e60fb8cfa9a4398aa475789beeac, type: 3}
+      - {fileID: 21300000, guid: 2176f2af5b65f4145ac1143b37a7b8fd, type: 3}
+      - {fileID: 21300000, guid: 699d9e7301e92b743977c12a4db1fa00, type: 3}
+    - startTime: 8
+      emojis:
+      - {fileID: 21300000, guid: 1f1ab878ea4f322489461feeffa918e5, type: 3}
+      - {fileID: 21300000, guid: 699d9e7301e92b743977c12a4db1fa00, type: 3}
+    - startTime: 9
+      emojis:
+      - {fileID: 21300000, guid: 1f1ab878ea4f322489461feeffa918e5, type: 3}
+      - {fileID: 21300000, guid: 699d9e7301e92b743977c12a4db1fa00, type: 3}
+      - {fileID: 21300000, guid: d3b0d7f5a20a9ca4d82c43d5423ca8d6, type: 3}
+      - {fileID: 21300000, guid: 2f6443637691c804591ef4553e9df279, type: 3}
+      - {fileID: 21300000, guid: 3fed25ed6c864a144aff6ecb10f45763, type: 3}
+      - {fileID: 21300000, guid: 9b81ffa9c7fe56e43a336bd17c9dbff6, type: 3}
+    - startTime: 12
+      emojis:
+      - {fileID: 21300000, guid: 80283637d68ecbf458a996fa9772ccce, type: 3}
     audio: {fileID: 8300000, guid: 7ef96dde426d1b841925c50a5bbff786, type: 3}
     animatorPhaseIndex: 3
     pauses:
     - start: 5.1
       duration: 3
-  - subtitles: []
+  - subtitles:
+    - startTime: 2
+      emojis:
+      - {fileID: 21300000, guid: 3237792885c65244fad2b39572ec7dd6, type: 3}
+      - {fileID: 21300000, guid: 8fdfe59a2767d8b43a3e4c33d1f024d1, type: 3}
+    - startTime: 4
+      emojis:
+      - {fileID: 21300000, guid: abf0a1e8204b7c34fb588737b461f450, type: 3}
+    - startTime: 11
+      emojis:
+      - {fileID: 21300000, guid: c1a455e1f3b887c40a4d828937d748ca, type: 3}
+    - startTime: 17
+      emojis:
+      - {fileID: 21300000, guid: 29efccc08c089044d88ae549d00e3c0d, type: 3}
     audio: {fileID: 8300000, guid: 3cdb22adb55267d4c84e0a2bcdee2761, type: 3}
     animatorPhaseIndex: 4
     pauses:
@@ -2434,6 +2526,10 @@ MonoBehaviour:
     pauses:
     - start: 3.9
       duration: 5.5
+  - subtitles: []
+    audio: {fileID: 8300000, guid: 5b08affada5cd2d4e8151cd5d0f9890f, type: 3}
+    animatorPhaseIndex: 6
+    pauses: []
   - subtitles: []
     audio: {fileID: 8300000, guid: 5b08affada5cd2d4e8151cd5d0f9890f, type: 3}
     animatorPhaseIndex: 6
