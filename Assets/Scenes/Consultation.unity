@@ -2428,7 +2428,7 @@ MonoBehaviour:
     - startTime: 22
       emojis:
       - {fileID: 21300000, guid: 80283637d68ecbf458a996fa9772ccce, type: 3}
-    - startTime: 24
+    - startTime: 23
       emojis:
       - {fileID: 21300000, guid: 1f1ab878ea4f322489461feeffa918e5, type: 3}
       - {fileID: 21300000, guid: 10564212c73063348901b98bd4ded79b, type: 3}
@@ -2507,12 +2507,27 @@ MonoBehaviour:
     - startTime: 4
       emojis:
       - {fileID: 21300000, guid: abf0a1e8204b7c34fb588737b461f450, type: 3}
+    - startTime: 6
+      emojis:
+      - {fileID: 21300000, guid: 3237792885c65244fad2b39572ec7dd6, type: 3}
+      - {fileID: 21300000, guid: 8fdfe59a2767d8b43a3e4c33d1f024d1, type: 3}
     - startTime: 11
       emojis:
       - {fileID: 21300000, guid: c1a455e1f3b887c40a4d828937d748ca, type: 3}
+    - startTime: 13
+      emojis:
+      - {fileID: 21300000, guid: 3237792885c65244fad2b39572ec7dd6, type: 3}
+      - {fileID: 21300000, guid: 8fdfe59a2767d8b43a3e4c33d1f024d1, type: 3}
     - startTime: 17
       emojis:
       - {fileID: 21300000, guid: 29efccc08c089044d88ae549d00e3c0d, type: 3}
+    - startTime: 18
+      emojis:
+      - {fileID: 21300000, guid: 80283637d68ecbf458a996fa9772ccce, type: 3}
+    - startTime: 19
+      emojis:
+      - {fileID: 21300000, guid: 1efa73faf9e7a1c459cd6b0e672ccbd9, type: 3}
+      - {fileID: 21300000, guid: 4466f112156fd36408e2fa1aed688bc8, type: 3}
     audio: {fileID: 8300000, guid: 3cdb22adb55267d4c84e0a2bcdee2761, type: 3}
     animatorPhaseIndex: 4
     pauses:
@@ -2520,17 +2535,56 @@ MonoBehaviour:
       duration: 5
     - start: 13
       duration: 4
-  - subtitles: []
+  - subtitles:
+    - startTime: 1
+      emojis:
+      - {fileID: 21300000, guid: 1284f9e2f1eeef440bf251ecf68e7475, type: 3}
+      - {fileID: 21300000, guid: 79de1523ddaa9cb4c89a22125208450a, type: 3}
+      - {fileID: 21300000, guid: 79de1523ddaa9cb4c89a22125208450a, type: 3}
+    - startTime: 3
+      emojis:
+      - {fileID: 21300000, guid: d64e61a0df0430d40a93a03646412169, type: 3}
+    - startTime: 9
+      emojis:
+      - {fileID: 21300000, guid: 1f1ab878ea4f322489461feeffa918e5, type: 3}
+      - {fileID: 21300000, guid: db57fde05288eb74384d4d3886c83a52, type: 3}
+      - {fileID: 21300000, guid: 80283637d68ecbf458a996fa9772ccce, type: 3}
+      - {fileID: 21300000, guid: 79e8f765a6ef6a54083f8b4099539d2b, type: 3}
     audio: {fileID: 8300000, guid: 29565c1fd4eada747a289bb418583690, type: 3}
     animatorPhaseIndex: 5
     pauses:
     - start: 3.9
       duration: 5.5
-  - subtitles: []
-    audio: {fileID: 8300000, guid: 5b08affada5cd2d4e8151cd5d0f9890f, type: 3}
-    animatorPhaseIndex: 6
-    pauses: []
-  - subtitles: []
+  - subtitles:
+    - startTime: 0
+      emojis:
+      - {fileID: 21300000, guid: 926936d146f9a09439f70c7dbe873144, type: 3}
+      - {fileID: 21300000, guid: 80283637d68ecbf458a996fa9772ccce, type: 3}
+    - startTime: 3
+      emojis:
+      - {fileID: 21300000, guid: 1f1ab878ea4f322489461feeffa918e5, type: 3}
+      - {fileID: 21300000, guid: 7e2ee2bdc58c17e42ba63885c1156002, type: 3}
+      - {fileID: 21300000, guid: 494925eb55d287a4b99101909824849e, type: 3}
+    - startTime: 5
+      emojis:
+      - {fileID: 21300000, guid: 791f15b5fe8f8bc4a850490bc2568f73, type: 3}
+      - {fileID: 21300000, guid: 5c30919ceec7e944090e2920229f5c80, type: 3}
+      - {fileID: 21300000, guid: 82535203ce0f684429cbe2072fc671a2, type: 3}
+      - {fileID: 21300000, guid: 566504b1ce515a3418bb8c471013f2a2, type: 3}
+    - startTime: 7
+      emojis:
+      - {fileID: 21300000, guid: c27ddf1b51c7d2347903f4de63e020cd, type: 3}
+      - {fileID: 21300000, guid: 827d239702486e34fa34ec5b8e9d30ac, type: 3}
+      - {fileID: 21300000, guid: 5b81d27091474e04599709d10dca4e5e, type: 3}
+    - startTime: 9
+      emojis:
+      - {fileID: 21300000, guid: 252e0832bba5cee4288e6156597b7d55, type: 3}
+      - {fileID: 21300000, guid: 926936d146f9a09439f70c7dbe873144, type: 3}
+      - {fileID: 21300000, guid: 2846181942df48145bbd5f0d29d207b1, type: 3}
+    - startTime: 13
+      emojis:
+      - {fileID: 21300000, guid: e0a541eff9c9eac4b93288a6074661f6, type: 3}
+      - {fileID: 21300000, guid: 4c82989340a24f04aa6ba22cf5e85ad8, type: 3}
     audio: {fileID: 8300000, guid: 5b08affada5cd2d4e8151cd5d0f9890f, type: 3}
     animatorPhaseIndex: 6
     pauses: []
